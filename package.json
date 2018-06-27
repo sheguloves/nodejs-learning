@@ -1,0 +1,17 @@
+{
+  "name": "express-demo",
+  "version": "1.0.0",
+  "description": "this is express learning demo",
+  "main": "index.js",
+  "scripts": {
+    "express:fileupload": "node inspect ./src/express/file_upload/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "multer": "^1.3.0"
+  }
+}
