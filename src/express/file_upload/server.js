@@ -8,13 +8,13 @@ const app = express()
 
 app.use(cors())
 
-const UPLOAD_PATH = 'uploads'
+const UPLOAD_PATH = 'uploads/'
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, `${UPLOAD_PATH}`)
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname + '-' + Date.now())
+    cb(null, file.originalname)
   }
 })
 const upload = multer({ storage: storage, fileFilter: imageFilter})
@@ -28,6 +28,11 @@ const parseFile = function(file) {
     mimetype: file.mimetype
   }
 }
+
+app.get('/image/:filename', (req, res) => {
+  let filename = req.params.filename
+  res.download(`${UPLOAD_PATH}${filename}`)
+})
 
 app.post('/image/multi-upload', upload.array('images', 12), (req, res) => {
   let files = req.files
